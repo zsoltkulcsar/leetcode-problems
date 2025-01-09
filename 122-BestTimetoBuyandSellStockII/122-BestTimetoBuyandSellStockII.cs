@@ -1,13 +1,27 @@
 public class Solution {
-public int MaxProfit(int[] prices) {
-        int maxProfit = 0;
+    public bool CanJump(int[] nums) {
+        
+        //greed
 
-        for (int i = 1; i < prices.Length; i++) {
-            if (prices[i] > prices[i - 1]) {
-                maxProfit += prices[i] - prices[i - 1];
-            }
+        if(nums.Length == 1){
+            return true;
         }
 
-        return maxProfit;
+        int distance = 0;
+
+        for(int i=0; i < nums.Length - 1; i++){
+           
+            if(i > distance){
+                return false;
+            }
+
+            distance = Math.Max(distance, i + nums[i]);
+
+            if (distance >= nums.Length - 1) {
+                return true;
+        }
+    }
+
+     return false;
     }
 }
