@@ -1,23 +1,19 @@
 public class Solution {
-    public int Jump(int[] nums) {
+    public int HIndex(int[] citations) {
 
-        int jumps = 0;
-        int end = 0;
-        int farthest = 0;
+        Array.Sort(citations);
+        Array.Reverse(citations);
 
-        for (int i = 0; i < nums.Length - 1; i++) {
-            farthest = Math.Max(farthest, i + nums[i]);
+        int hIndex = 0;
 
-            if (i == end) {
-                jumps++;
-                end = farthest;
-
-                if (end >= nums.Length - 1) {
-                    break;
-                }
+        for (int i = 0; i < citations.Length; i++) {
+            if (citations[i] >= i + 1) {
+                hIndex = i + 1;
+            } else {
+                break;
             }
         }
 
-        return jumps;
+        return hIndex;
     }
 }
